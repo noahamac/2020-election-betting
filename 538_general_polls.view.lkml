@@ -269,9 +269,16 @@ view: 538_general_polls {
     filters: [campaign: "Biden"]
   }
 
-  measure: Trump_avg {
+  measure: trump_avg {
     type: average
     sql: ${pct} ;;
     filters: [campaign: "Trump"]
+  }
+
+  measure: 7d_polling_avg {
+    type: average
+    sql: ${pct} ;;
+    filters: [start_date: "last 7 days"]
+    value_format: "0\%"
   }
 }
