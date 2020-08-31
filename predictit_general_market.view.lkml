@@ -71,6 +71,7 @@ view: predictit_general_market {
   }
 
   dimension: last_trade_price {
+    hidden: yes
     type: number
     sql: ${TABLE}.LastTradePrice ;;
   }
@@ -90,6 +91,11 @@ view: predictit_general_market {
     hidden: yes
     type: string
     sql: ${TABLE}.Status ;;
+  }
+
+  measure: latest_bid {
+    type: number
+    sql: MIN(${last_trade_price}) ;;
   }
 
   measure: count {
