@@ -267,7 +267,7 @@ view: 538_general_polls {
     type: average
     sql: ${pct} ;;
     filters: [campaign: "Biden"]
-    value_format: "0\%"
+    value_format: "0.0\%"
     drill_fields: [start_date, end_date, campaign, pollster, pollster_rating, state, sample_size]
   }
 
@@ -275,7 +275,7 @@ view: 538_general_polls {
     type: average
     sql: ${pct} ;;
     filters: [campaign: "Trump"]
-    value_format: "0\%"
+    value_format: "0.0\%"
     drill_fields: [start_date, end_date, campaign, pollster, pollster_rating, state, sample_size]
   }
 
