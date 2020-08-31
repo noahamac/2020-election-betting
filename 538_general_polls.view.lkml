@@ -253,9 +253,14 @@ view: 538_general_polls {
     sql: ${TABLE}.url ;;
   }
 
-  measure: count {
+  measure: count_rows {
     type: count
     drill_fields: [candidate_name, pollster, seat_name, pollster_rating_name]
+  }
+
+  measure: count_polls {
+    type: number
+    sql: ${count_rows}/2 ;;
   }
 
   measure: biden_avg {
