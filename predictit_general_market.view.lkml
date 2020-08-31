@@ -95,7 +95,7 @@ view: predictit_general_market {
 
   measure: latest_bid {
     type: number
-    sql: MIN(${last_trade_price})*100 ;;
+    sql: MIN(${last_close_price})*100 ;;
     value_format: "0\%"
   }
 
