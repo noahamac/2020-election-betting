@@ -263,6 +263,29 @@ view: 538_general_polls {
     sql: ${count_rows}/2 ;;
   }
 
+  measure: min_pct {
+    type: min
+    sql: ${pct} ;;
+  }
+  measure: max_pct {
+    type: max
+    sql: ${pct} ;;
+  }
+  measure: median_pct {
+    type: median
+    sql: ${pct} ;;
+  }
+  measure: fq_pct {
+    type: percentile
+    percentile: 25
+    sql: ${pct} ;;
+  }
+  measure: tq_pct {
+    type: percentile
+    percentile: 75
+    sql: ${pct} ;;
+  }
+
   measure: biden_avg {
     type: average
     sql: ${pct} ;;
