@@ -2,6 +2,12 @@ view: 538_general_polls {
   sql_table_name: `spencer-white-tckt87992.2020electionbetting.general`
     ;;
 
+  dimension: pk {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${poll_id}, ":", ${question_id}) ;;
+  }
+
   dimension: campaign {
     type: string
     sql: ${TABLE}.answer ;;
