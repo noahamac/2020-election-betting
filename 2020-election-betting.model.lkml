@@ -9,4 +9,9 @@ explore: polls {
     relationship: many_to_one
     sql_on: ${polls.campaign} = ${predictit_general_market.short_name} ;;
   }
+
+  join: electoral_college_map {
+    relationship: many_to_one
+    sql_on: ${polls.state} = ${electoral_college_map.state} ;;
+  }
 }
