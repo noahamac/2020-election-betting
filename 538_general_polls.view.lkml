@@ -272,24 +272,29 @@ view: 538_general_polls {
 
   measure: min_pct {
     type: min
+    value_format: "0.0\%"
     sql: ${pct} ;;
   }
   measure: max_pct {
     type: max
+    value_format: "0.0\%"
     sql: ${pct} ;;
   }
   measure: median_pct {
     type: median
+    value_format: "0.0\%"
     sql: ${pct} ;;
   }
   measure: fq_pct {
     type: percentile
     percentile: 25
+    value_format: "0.0\%"
     sql: ${pct} ;;
   }
   measure: tq_pct {
     type: percentile
     percentile: 75
+    value_format: "0.0\%"
     sql: ${pct} ;;
   }
 
