@@ -4,8 +4,11 @@ view: 538_general_polls {
 
   dimension: pk {
     type: string
-    primary_key: yes
     sql: CONCAT(${poll_id}, ":", ${question_id}) ;;
+  }
+  dimension: true_pk {
+    sql: CONCAT(${pk},":",${notes}) ;;
+    primary_key: yes
   }
 
   dimension: campaign {
@@ -110,7 +113,7 @@ view: 538_general_polls {
   }
 
   dimension: notes {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.notes ;;
   }
