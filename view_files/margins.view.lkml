@@ -34,5 +34,6 @@ view: margins {
     type: average_distinct
     sql: ${biden_avg}-${trump_avg} ;;
     value_format: "0.0\%"
+    drill_fields: [pk]
   }
 }
