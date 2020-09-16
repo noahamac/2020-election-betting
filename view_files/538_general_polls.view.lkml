@@ -302,6 +302,7 @@ view: 538_general_polls {
   }
 
   measure: biden_avg {
+    label: "Biden Average"
     type: average
     sql: ${pct} ;;
     filters: [campaign: "Biden"]
@@ -310,6 +311,7 @@ view: 538_general_polls {
   }
 
   measure: trump_avg {
+    label: "Trump Average"
     type: average
     sql: ${pct} ;;
     filters: [campaign: "Trump"]
