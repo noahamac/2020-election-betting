@@ -38,4 +38,31 @@ view: margins {
     sql: ${net_biden} ;;
     value_format: "0.0\%"
   }
+  measure: min_margin {
+    type: min
+    value_format: "0.0\%"
+    sql: ${net_biden} ;;
+  }
+  measure: max_margin {
+    type: max
+    value_format: "0.0\%"
+    sql: ${net_biden} ;;
+  }
+  measure: median_margin {
+    type: median
+    value_format: "0.0\%"
+    sql: ${net_biden} ;;
+  }
+  measure: fq_margin {
+    type: percentile
+    percentile: 25
+    value_format: "0.0\%"
+    sql: ${net_biden} ;;
+  }
+  measure: tq_margin {
+    type: percentile
+    percentile: 75
+    value_format: "0.0\%"
+    sql: ${net_biden} ;;
+  }
 }
