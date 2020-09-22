@@ -13,6 +13,11 @@ view: electoral_college_map {
     sql: ${TABLE}.Votes ;;
   }
 
+  dimension: abbreviation {
+    type: number
+    sql: ${TABLE}.Abbreviation ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
