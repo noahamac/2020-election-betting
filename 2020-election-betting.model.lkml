@@ -17,7 +17,6 @@ explore: polls {
 
   join: margins {
     relationship: one_to_one
-    sql_on: ${polls.pk} = ${margins.pk}
-            AND ${polls.notes} = ${margins.notes} ;;
+    sql_on: ${polls.pk} = ${margins.pk} ;;
   }
 }
