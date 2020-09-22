@@ -14,7 +14,7 @@ view: electoral_college_map {
   }
 
   dimension: abbreviation {
-    type: number
+    type: string
     sql: ${TABLE}.Abbreviation ;;
   }
 
