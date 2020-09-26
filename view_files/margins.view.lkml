@@ -45,6 +45,16 @@ view: margins {
     ELSE '3 True Tossup'
     END ;;
   }
+  measure: rough_forecast {
+    type: string
+    sql: CASE
+          WHEN ${forecast} = '1 Solid Biden' THEN '1 Biden'
+          WHEN ${forecast} = '2 Lean Biden' THEN '1 Biden'
+          WHEN ${forecast} = '4 Lean Trump' THEN '3 Trump'
+          WHEN ${forecast} = '5 Solid Trump' THEN '3 Trump'
+          ELSE '2 Tossup'
+          END ;;
+  }
   measure: avg_biden_margin {
     type: average
     sql: ${net_biden} ;;
