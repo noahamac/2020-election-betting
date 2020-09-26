@@ -9,6 +9,10 @@ view: forecast_lookup {
   dimension: forecast {
     type: string
   }
+  dimension: forecast_index {
+    type: number
+    sql: SPLIT(${forecast}, " ")[0] ;;
+  }
 }
 
 view: rough_forecast_lookup {
