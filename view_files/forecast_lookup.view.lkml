@@ -11,7 +11,7 @@ view: forecast_lookup {
   }
   dimension: forecast_index {
     type: number
-    sql: SPLIT(${forecast}, " ")[0] ;;
+    sql: SPLIT(${forecast}, " ")[OFFSET(0)] ;;
   }
 }
 

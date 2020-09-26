@@ -250,7 +250,10 @@ view: 538_general_polls {
   dimension: state {
     map_layer_name: us_states
     type: string
-    sql: ${TABLE}.state ;;
+    sql: CASE
+      WHEN ${TABLE}.state = "Maine CD-1" THEN 'Maine'
+      ELSE ${TABLE}.state
+      END ;;
   }
 
   dimension: tracking {
