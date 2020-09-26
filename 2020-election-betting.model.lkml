@@ -24,4 +24,9 @@ explore: polls {
     relationship: one_to_one
     sql_on: ${polls.state} = ${forecast_lookup.state} ;;
   }
+
+  join: rough_forecast_lookup {
+    relationship: one_to_one
+    sql_on: ${polls.state} = ${rough_forecast_lookup.state} ;;
+  }
 }
