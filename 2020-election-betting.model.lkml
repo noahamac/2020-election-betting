@@ -19,4 +19,9 @@ explore: polls {
     relationship: one_to_one
     sql_on: ${polls.pk} = ${margins.pk} ;;
   }
+
+  join: forecast_lookup {
+    relationship: one_to_one
+    sql_on: ${polls.state} = ${forecast_lookup.state} ;;
+  }
 }
