@@ -38,11 +38,11 @@ view: margins {
   measure: forecast {
     type: string
     sql: CASE
-    WHEN ${fq_margin} > 0 THEN 'Solid Biden'
-    WHEN ${fq_margin} < 0 AND ${median_margin} > 0 THEN 'Lean Biden'
-    WHEN ${tq_margin} > 0 AND ${median_margin} < 0 THEN 'Lean Trump'
-    WHEN ${tq_margin} < 0 THEN 'Solid Trump'
-    ELSE 'True Tossup'
+    WHEN ${fq_margin} > 0 THEN '1 Solid Biden'
+    WHEN ${fq_margin} < 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
+    WHEN ${tq_margin} > 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
+    WHEN ${tq_margin} < 0 THEN '5 Solid Trump'
+    ELSE '3 True Tossup'
     END ;;
   }
   measure: avg_biden_margin {
