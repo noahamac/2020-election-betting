@@ -252,6 +252,9 @@ view: 538_general_polls {
     type: string
     sql: CASE
       WHEN ${TABLE}.state = "Maine CD-1" THEN 'Maine'
+      WHEN ${TABLE}.state = "Maine CD-2" THEN 'Maine'
+      WHEN ${TABLE}.state = "Nebraska CD-2" THEN 'Nebraska'
+      WHEN ${TABLE}.state = "Nebraska CD-1" THEN 'Nebraska'
       ELSE ${TABLE}.state
       END ;;
   }
