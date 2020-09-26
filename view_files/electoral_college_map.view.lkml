@@ -3,6 +3,7 @@ view: electoral_college_map {
     ;;
 
   dimension: state {
+    primary_key: yes
     map_layer_name: us_states
     type: string
     sql: ${TABLE}.State ;;
@@ -21,5 +22,10 @@ view: electoral_college_map {
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: sum {
+    type: sum
+    sql: ${votes} ;;
   }
 }
