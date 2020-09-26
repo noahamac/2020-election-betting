@@ -27,5 +27,6 @@ view: electoral_college_map {
   measure: sum {
     type: sum
     sql: ${votes} ;;
+    drill_fields: [state, margins.min_margin, margins.fq_margin, margins.median_margin, margins.tq_margin, margins.max_margin, forecast_lookup.forecast]
   }
 }
