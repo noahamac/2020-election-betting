@@ -32,7 +32,19 @@ view: margins {
     sql: ${biden_avg}-${trump_avg} ;;
     value_format: "0.0\%"
   }
-  dimension: pk {}
+  dimension: pk {
+
+  }
+  measure: forecast {
+    type: string
+    sql: CASE
+    WHEN ${fq_margin} > 0 THEN 'Solid Biden'
+    WHEN ${fq_margin} < 0 AND ${median_margin} > 0 THEN 'Lean Biden'
+    WHEN ${tq_margin} > 0 AND ${median_margin} < 0 THEN 'Lean Trump'
+    WHEN ${tq_margin} < 0 THEN 'Solid Trump'
+    ELSE 'True Tossup'
+    END ;;
+  }
   measure: avg_biden_margin {
     type: average
     sql: ${net_biden} ;;
