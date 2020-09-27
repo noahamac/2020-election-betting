@@ -38,6 +38,10 @@ view: margins {
   parameter: observed {
     type: number
     allowed_value: {
+      label: "No Observed"
+      value: "0.0"
+    }
+    allowed_value: {
       label: "1% Toward Biden"
       value: "-1"
     }
