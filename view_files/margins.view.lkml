@@ -35,13 +35,32 @@ view: margins {
   dimension: pk {
 
   }
+  parameter: observed {
+    type: number
+    allowed_value: {
+      label: "1% Toward Biden"
+      value: "-1"
+    }
+    allowed_value: {
+      label: "0.5% Toward Biden"
+      value: "-0.5"
+    }
+    allowed_value: {
+      label: "1% Toward Trump"
+      value: "1"
+    }
+    allowed_value: {
+      label: "0.5% Toward Trump"
+      value: "0.5"
+    }
+  }
   measure: forecast {
     type: string
     sql: CASE
-    WHEN ${fq_margin} >= 0 THEN '1 Solid Biden'
-    WHEN ${fq_margin} <= 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
-    WHEN ${tq_margin} >= 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
-    WHEN ${tq_margin} <= 0 THEN '5 Solid Trump'
+    WHEN ${fq_margin} >= (0 + {% parameter observed %}) THEN '1 Solid Biden'
+    WHEN ${fq_margin} <= (0 + {% parameter observed %}) AND ${median_margin} > (0 + {% parameter observed %}) THEN '2 Lean Biden'
+    WHEN ${tq_margin} >= (0 + {% parameter observed %}) AND ${median_margin} < (0 + {% parameter observed %}) THEN '4 Lean Trump'
+    WHEN ${tq_margin} <= (0 + {% parameter observed %}) THEN '5 Solid Trump'
     ELSE '3 True Tossup'
     END ;;
   }
