@@ -61,10 +61,10 @@ view: margins {
   measure: forecast {
     type: string
     sql: CASE
-    WHEN ${fq_margin} >= (0 + {% parameter observed %}) THEN '1 Solid Biden'
-    WHEN ${fq_margin} <= (0 + {% parameter observed %}) AND ${median_margin} > (0 + {% parameter observed %}) THEN '2 Lean Biden'
-    WHEN ${tq_margin} >= (0 + {% parameter observed %}) AND ${median_margin} < (0 + {% parameter observed %}) THEN '4 Lean Trump'
-    WHEN ${tq_margin} <= (0 + {% parameter observed %}) THEN '5 Solid Trump'
+    WHEN ${fq_margin} >= 0 THEN '1 Solid Biden'
+    WHEN ${fq_margin} <= 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
+    WHEN ${tq_margin} >= 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
+    WHEN ${tq_margin} <= 0 THEN '5 Solid Trump'
     ELSE '3 True Tossup'
     END ;;
   }
