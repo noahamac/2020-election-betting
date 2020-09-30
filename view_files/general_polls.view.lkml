@@ -1,4 +1,4 @@
-view: 538_general_polls {
+view: general_polls {
   sql_table_name: `spencer-white-tckt87992.2020electionbetting.general`
     ;;
 

@@ -65,7 +65,8 @@ view: margins {
     WHEN ${fq_margin} <= 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
     WHEN ${tq_margin} >= 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
     WHEN ${tq_margin} <= 0 THEN '5 Solid Trump'
-    ELSE '3 True Tossup'
+    WHEN ${tq_margin} = 0 THEN '3 True Tossup'
+    ELSE '6 No Polling'
     END ;;
   }
   measure: rough_forecast {
@@ -75,6 +76,7 @@ view: margins {
           WHEN ${forecast} = '2 Lean Biden' THEN '1 Biden'
           WHEN ${forecast} = '4 Lean Trump' THEN '3 Trump'
           WHEN ${forecast} = '5 Solid Trump' THEN '3 Trump'
+          WHEN ${forecast} = '6 No Polling' THEN '4 Trump'
           ELSE '2 Tossup'
           END ;;
   }
