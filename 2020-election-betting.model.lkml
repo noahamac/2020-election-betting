@@ -1,6 +1,7 @@
 connection: "brick-layer"
 
-include: "/view_files/*.view.lkml"                # include all views in the views/ folder in this project
+include: "/view_files/*.view.lkml"
+include: "//data-block-acs-census-bigquery/*"
 
 explore: polls {
   from: general_polls
@@ -53,5 +54,25 @@ explore: ecmap {
   join: niskanen {
     relationship: one_to_one
     sql_on: ${ecmap.abbreviation} = ${niskanen.abbreviation} ;;
+  }
+}
+
+explore: +congressional_district {
+  always_join: [niskanen]
+  join: general_polls {
+    relationship: one_to_many
+    sql_on: ${state.state_name} = ${general_polls.state} ;;
+  }
+  join: margins {
+    relationship: one_to_one
+    sql_on: ${general_polls.pk} = ${margins.pk} ;;
+  }
+  join: forecast_lookup {
+    relationship: one_to_one
+    sql_on: ${state.state_abbreviation} = ${forecast_lookup.abbreviation} ;;
+  }
+  join: niskanen {
+    relationship: one_to_one
+    sql_on: ${state.state_abbreviation} = ${niskanen.abbreviation} ;;
   }
 }

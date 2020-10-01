@@ -32,6 +32,13 @@ view: margins {
     sql: ${biden_avg}-${trump_avg} ;;
     value_format: "0.0\%"
   }
+  dimension: marginal_bins {
+    type: tier
+    tiers: [-5,-4,-3,-2,-1,0,1,2,3,4,5]
+    style: integer
+    sql: CAST(${net_biden} AS INT64) ;;
+    value_format: "0.0\%"
+  }
   dimension: pk {
 
   }
