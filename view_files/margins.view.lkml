@@ -42,28 +42,33 @@ view: margins {
   dimension: pk {
 
   }
-  parameter: observed {
+  measure: total {
     type: number
-    allowed_value: {
-      label: "No Observed"
-      value: "0.0"
-    }
-    allowed_value: {
-      label: "1% Toward Biden"
-      value: "-1"
-    }
-    allowed_value: {
-      label: "0.5% Toward Biden"
-      value: "-0.5"
-    }
-    allowed_value: {
-      label: "1% Toward Trump"
-      value: "1"
-    }
-    allowed_value: {
-      label: "0.5% Toward Trump"
-      value: "0.5"
-    }
+    sql: IF(${biden_win}+${trump_win}>0, ${biden_win}+${trump_win}, 1) ;;
+  }
+  measure: biden_win {
+    type: sum
+    sql: CASE
+          WHEN ${net_biden} >= 0 THEN 1
+          ELSE null
+    END ;;
+  }
+  measure: trump_win {
+    type: sum
+    sql: CASE
+          WHEN ${net_biden} <= 0 THEN 1
+          ELSE null
+    END ;;
+  }
+  measure: prob_biden {
+    type: number
+    sql: ${biden_win}/${total} ;;
+    value_format: "0.0%"
+  }
+  measure: prob_trump {
+    type: number
+    sql: ${trump_win}/${total} ;;
+    value_format: "0.0%"
   }
   measure: forecast {
     type: string

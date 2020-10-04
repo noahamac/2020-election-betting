@@ -25,6 +25,13 @@ view: niskanen {
   dimension: biden_prob {
     type: number
     sql: ${TABLE}.biden_prob ;;
+    value_format: "0.0\%"
+  }
+
+  measure: real_biden_prob {
+    type: min
+    sql: ${biden_prob}/100 ;;
+    value_format: "0.0%"
   }
 
   dimension: call {
@@ -45,6 +52,7 @@ view: niskanen {
   dimension: trump_prob {
     type: number
     sql: ${TABLE}.trump_prob ;;
+    value_format: "0.0\%"
   }
 
   measure: count {

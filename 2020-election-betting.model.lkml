@@ -55,6 +55,10 @@ explore: ecmap {
     relationship: one_to_one
     sql_on: ${ecmap.abbreviation} = ${niskanen.abbreviation} ;;
   }
+  join: fivethirtyeight_state {
+    relationship: one_to_many
+    sql: ${ecmap.state} = ${fivethirtyeight_state.state} ;;
+  }
 }
 
 explore: +congressional_district {
