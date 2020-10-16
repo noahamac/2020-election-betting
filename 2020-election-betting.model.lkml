@@ -1,6 +1,4 @@
-connection: "brick-layer"
-
-include: "/view_files/*.view.lkml"
+include: "/views/*.view.lkml"
 include: "//data-block-acs-census-bigquery/*"
 
 explore: polls {
@@ -57,7 +55,7 @@ explore: ecmap {
   }
   join: fivethirtyeight_state {
     relationship: one_to_many
-    sql: ${ecmap.state} = ${fivethirtyeight_state.state} ;;
+    sql_on: ${ecmap.state} = ${fivethirtyeight_state.state} ;;
   }
 }
 
@@ -78,5 +76,13 @@ explore: +congressional_district {
   join: niskanen {
     relationship: one_to_one
     sql_on: ${state.state_abbreviation} = ${niskanen.abbreviation} ;;
+  }
+}
+
+
+explore: +acs_census_data_core {
+  join: az_general_16 {
+    relationship: one_to_one
+    sql_on: ${az_general_16.county} = ${county.county_name} ;;
   }
 }

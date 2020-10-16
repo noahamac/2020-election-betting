@@ -29,18 +29,21 @@ view: margins {
   }
   dimension: net_biden {
     type: number
-    sql: ${biden_avg}-${trump_avg} ;;
-    value_format: "0.0\%"
+    sql: round(${biden_avg}-${trump_avg}) ;;
+    value_format: "0\%"
   }
   dimension: marginal_bins {
     type: tier
-    tiers: [-5,-4,-3,-2,-1,0,1,2,3,4,5]
+    tiers: [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10]
     style: integer
     sql: CAST(${net_biden} AS INT64) ;;
     value_format: "0.0\%"
   }
   dimension: pk {
-
+  primary_key: yes
+  }
+  measure: count {
+    type: count
   }
   measure: total {
     type: number
@@ -74,8 +77,8 @@ view: margins {
     type: string
     sql: CASE
     WHEN ${fq_margin} >= 0 THEN '1 Solid Biden'
-    WHEN ${fq_margin} <= 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
-    WHEN ${tq_margin} >= 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
+    WHEN ${fq_margin} < 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
+    WHEN ${tq_margin} > 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
     WHEN ${tq_margin} <= 0 THEN '5 Solid Trump'
     WHEN ${tq_margin} = 0 THEN '3 True Tossup'
     ELSE '6 No Polling'

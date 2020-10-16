@@ -5,4 +5,7 @@ project_name: "2020-election-betting"
 #
 local_dependency: {
   project: "data-block-acs-census-bigquery"
+  override_constant: CONNECTION_NAME {
+    value: "brick-layer"
+  }
 }
