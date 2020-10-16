@@ -8,6 +8,7 @@ view: az_general_16 {
   }
 
   dimension: county {
+    primary_key: yes
     type: string
     sql: ${TABLE}.county ;;
   }
