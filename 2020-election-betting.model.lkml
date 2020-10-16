@@ -85,4 +85,12 @@ explore: +acs_census_data_core {
     relationship: one_to_one
     sql_on: ${az_general_16.county} = ${county.county_name} ;;
   }
+  join: general_polls {
+    relationship: one_to_many
+    sql_on: ${state.state_name} = ${general_polls.state} ;;
+  }
+  join: margins {
+    relationship: one_to_one
+    sql_on: ${general_polls.pk} = ${margins.pk} ;;
+  }
 }
