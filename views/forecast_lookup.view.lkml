@@ -22,7 +22,7 @@ view: forecast_lookup {
     sql: CASE
           WHEN ${niskanen_forecast} = "safe_d" THEN "1 Solid Biden"
           WHEN ${niskanen_forecast} = "likely_d" THEN "2 Lean Biden"
-          WHEN ${niskanen_forecast} = "tossup" THEN "3 True Tossup"
+          WHEN ${niskanen_forecast} = "tossup" THEN "3 Tossup"
           WHEN ${niskanen_forecast} = "likely_r" THEN "4 Lean Trump"
           WHEN ${niskanen_forecast} = "safe_r" THEN "5 Solid Trump"
           END ;;

@@ -19,12 +19,12 @@ view: margins {
   }
   dimension: biden_avg {
     label: "Polls Biden Average"
-    value_format: "0.0\%"
+    value_format: "0\%"
     type: number
   }
   dimension: trump_avg {
     label: "Polls Trump Average"
-    value_format: "0.0\%"
+    value_format: "0\%"
     type: number
   }
   dimension: net_biden {
@@ -37,7 +37,7 @@ view: margins {
     tiers: [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10]
     style: integer
     sql: CAST(${net_biden} AS INT64) ;;
-    value_format: "0.0\%"
+    value_format: "0\%"
   }
   dimension: pk {
   primary_key: yes
@@ -66,12 +66,12 @@ view: margins {
   measure: prob_biden {
     type: number
     sql: ${biden_win}/${total} ;;
-    value_format: "0.0%"
+    value_format: "0%"
   }
   measure: prob_trump {
     type: number
     sql: ${trump_win}/${total} ;;
-    value_format: "0.0%"
+    value_format: "0%"
   }
   measure: forecast {
     type: string
@@ -80,7 +80,7 @@ view: margins {
     WHEN ${fq_margin} < 0 AND ${median_margin} > 0 THEN '2 Lean Biden'
     WHEN ${tq_margin} > 0 AND ${median_margin} < 0 THEN '4 Lean Trump'
     WHEN ${tq_margin} <= 0 THEN '5 Solid Trump'
-    WHEN ${tq_margin} = 0 THEN '3 True Tossup'
+    WHEN ${median_margin} = 0 THEN '3 Tossup'
     ELSE '6 No Polling'
     END ;;
   }
@@ -98,33 +98,33 @@ view: margins {
   measure: avg_biden_margin {
     type: average
     sql: ${net_biden} ;;
-    value_format: "0.0\%"
+    value_format: "0\%"
   }
   measure: min_margin {
     type: min
-    value_format: "0.0\%"
+    value_format: "0\%"
     sql: ${net_biden} ;;
   }
   measure: max_margin {
     type: max
-    value_format: "0.0\%"
+    value_format: "0\%"
     sql: ${net_biden} ;;
   }
   measure: median_margin {
     type: median
-    value_format: "0.0\%"
+    value_format: "0\%"
     sql: ${net_biden} ;;
   }
   measure: fq_margin {
     type: percentile
     percentile: 25
-    value_format: "0.0\%"
+    value_format: "0\%"
     sql: ${net_biden} ;;
   }
   measure: tq_margin {
     type: percentile
     percentile: 75
-    value_format: "0.0\%"
+    value_format: "0\%"
     sql: ${net_biden} ;;
   }
 }

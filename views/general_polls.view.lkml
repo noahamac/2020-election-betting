@@ -250,7 +250,7 @@ view: general_polls {
   dimension: state {
     map_layer_name: us_states
     type: string
-    sql: ${TABLE}.state ;;
+    sql: IFNULL(${TABLE}.state, "National") ;;
   }
 
   dimension: tracking {
