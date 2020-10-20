@@ -14,6 +14,11 @@ view: electoral_college_map {
     sql: ${TABLE}.Votes ;;
   }
 
+  dimension: closing {
+    type: number
+    sql: ${TABLE}.closing_time ;;
+  }
+
   dimension: abbreviation {
     type: string
     sql: ${TABLE}.Abbreviation ;;
