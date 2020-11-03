@@ -329,3 +329,9 @@ view: general_polls {
 
   drill_fields: [start_date, end_date, campaign, pollster, pollster_rating, state, sample_size]
 }
+
+view: +general_polls {
+  dimension: candidate_id {
+    tags: ["This is a test! How is refinement indicated in API response?"]
+  }
+}
