@@ -2,6 +2,7 @@ include: "/views/*.view.lkml"
 include: "//data-block-acs-census-bigquery/*"
 
 explore: polls {
+  description: "This explore should be used to analyze 2020 polling data from a 538 data source base."
   from: general_polls
 
   join: predictit_general_market {
@@ -35,6 +36,7 @@ explore: polls {
 }
 
 explore: ecmap {
+  description: "This explore should be used when analyzing the US Electoral College in Looker. Various forecasting models, polling measures, and more are included."
   always_join: [niskanen]
   from: electoral_college_map
   join: general_polls {
