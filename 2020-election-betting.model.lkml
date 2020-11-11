@@ -37,6 +37,7 @@ explore: polls {
 
 explore: ecmap {
   description: "This explore should be used when analyzing the US Electoral College in Looker. Various forecasting models, polling measures, and more are included."
+  label: "Electoral College Map"
   always_join: [niskanen]
   from: electoral_college_map
   join: general_polls {
@@ -103,5 +104,17 @@ explore: +cbsa {
   hidden: yes
 }
 explore: +zcta {
+  hidden: yes
+}
+explore: +school_districts_unified {
+  hidden: yes
+}
+explore: +school_districts_elementary {
+  hidden: yes
+}
+explore: +school_districts_secondary {
+  hidden: yes
+}
+explore: +puma {
   hidden: yes
 }
