@@ -96,3 +96,12 @@ explore: +acs_census_data_core {
     sql_on: ${general_polls.pk} = ${margins.pk} ;;
   }
 }
+explore: +places {
+  hidden: yes
+}
+explore: +cbsa {
+  hidden: yes
+}
+explore: +zcta {
+  hidden: yes
+}
