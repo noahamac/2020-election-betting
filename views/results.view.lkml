@@ -30,7 +30,7 @@ view: results {
   dimension: pk {
     primary_key: yes
     type: string
-    sql: ${county} + "," + ${state} ;;
+    sql: CONCAT(${county}, " County,", ${state}) ;;
   }
 
   dimension: total {
@@ -50,26 +50,18 @@ view: results {
 
   measure: biden_votes {
     type: sum
-    sql: ${biden}*${total} ;;
-  }
-
-  measure: biden_pct {
-    type: number
-    sql: ${biden_votes} / ${total} ;;
+    value_format: "0"
+    sql: ${biden} * ${total} ;;
   }
 
   measure: trump_votes {
     type: sum
-    sql: ${trump}*${total} ;;
-  }
-
-  measure: trump_pct {
-    type: number
-    sql: ${trump_votes} / ${total} ;;
+    value_format: "0"
+    sql: ${trump} * ${total} ;;
   }
 
   measure: mov {
     type: number
-    sql: ${biden_pct} - ${trump_pct} ;;
+    sql: ${biden_votes} - ${trump_votes} ;;
   }
 }

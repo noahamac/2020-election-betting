@@ -1,5 +1,7 @@
 include: "/views/*.view.lkml"
 include: "//data-block-acs-census-bigquery/*"
+include: "//data-block-acs-census-bigquery/explores/*"
+include: "//data-block-acs-census-bigquery/geography/*"
 
 explore: polls {
   description: "This explore should be used to analyze 2020 polling data from a 538 data source base."
@@ -63,6 +65,17 @@ explore: ecmap {
 }
 
 explore: results {}
+explore: results_flat {
+  always_join: [state]
+  join: state {
+    relationship: many_to_many
+    sql_on: ${results_flat.state} = ${state.state_abbreviation} ;;
+  }
+  join: county {
+    relationship: many_to_many
+    sql_on: ${results_flat.pk} = CONCAT(${county.county_name}, ",", ${state.state_abbreviation}) ;;
+  }
+}
 
 explore: +congressional_district {
   always_join: [niskanen]
