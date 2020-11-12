@@ -62,6 +62,8 @@ explore: ecmap {
   }
 }
 
+explore: results {}
+
 explore: +congressional_district {
   always_join: [niskanen]
   join: general_polls {
