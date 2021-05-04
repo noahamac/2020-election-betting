@@ -7,6 +7,11 @@ explore: polls {
   description: "This explore should be used to analyze 2020 polling data from a 538 data source base."
   from: general_polls
 
+  query: count_polls_by_month {
+    dimensions: [polls.start_month]
+    measures: [polls.count_polls]
+  }
+
   join: predictit_general_market {
     relationship: many_to_one
     sql_on: ${polls.campaign} = ${predictit_general_market.short_name} ;;
@@ -29,11 +34,21 @@ explore: polls {
 
   join: rough_forecast_lookup {
     relationship: one_to_one
+    type: cross
     sql_on: ${polls.state} = ${rough_forecast_lookup.state} ;;
   }
   join: niskanen {
     relationship: one_to_one
     sql_on: ${electoral_college_map.abbreviation} = ${niskanen.abbreviation} ;;
+  }
+}
+
+explore: order_items {}
+
+explore: polling {
+  join: forecast {
+    relationship: many_to_one
+    sql_on: ${polling.pk} = ${forecast.pk} ;;
   }
 }
 
@@ -61,6 +76,10 @@ explore: ecmap {
   join: fivethirtyeight_state {
     relationship: one_to_many
     sql_on: ${ecmap.state} = ${fivethirtyeight_state.state} ;;
+  }
+  join: results_flat {
+    relationship: many_to_many
+    sql_on: ${results_flat.state} = ${ecmap.abbreviation} ;;
   }
 }
 
@@ -132,4 +151,26 @@ explore: +school_districts_secondary {
 }
 explore: +puma {
   hidden: yes
+}
+
+explore: electoral_college_map {
+  join: niskanen {
+    type: left_outer
+    sql_on: ${electoral_college_map.abbreviation} = ${niskanen._2008} ;;
+  }
+  join: niskanen_other {
+    from: niskanen
+    type: inner
+    sql_on: ${electoral_college_map.state} = ${niskanen.negative_partisanship} ;;
+  }
+  join: niskanen_cross {
+    from: niskanen
+    type: cross
+    sql_on: ${electoral_college_map.votes} = ${niskanen.trump_prob} ;;
+  }
+  join: niskaknen_full {
+    from: niskanen
+    type: full_outer
+    sql_on: ${electoral_college_map.closing} = ${niskanen.biden_prob} ;;
+  }
 }
