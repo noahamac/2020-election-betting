@@ -47,7 +47,7 @@ explore: order_items {}
 
 explore: polling {
   join: forecast {
-    relationship: many_to_one
+    relationship: one_to_one
     sql_on: ${polling.pk} = ${forecast.pk} ;;
   }
 }
