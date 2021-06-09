@@ -1,14 +1,14 @@
 view: results_flat {
-  derived_table: {
-    explore_source: results {
-      column: state {}
-      column: county {}
-      column: pk {}
-      column: biden_votes {}
-      column: trump_votes {}
-      column: total {}
-    }
-  }
+  # derived_table: {
+  #   explore_source: results {
+  #     column: state {}
+  #     column: county {}
+  #     column: pk {}
+  #     column: biden_votes {}
+  #     column: trump_votes {}
+  #     column: total {}
+  #   }
+  # }
   dimension: state {}
   dimension: pk {
     primary_key: yes

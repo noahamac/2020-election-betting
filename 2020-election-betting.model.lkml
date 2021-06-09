@@ -1,6 +1,6 @@
 include: "/views/*.view.lkml"
 include: "//data-block-acs-census-bigquery/*"
-include: "//data-block-acs-census-bigquery/explores/*"
+include: "//data-block-acs-census-bigquery/explores/acs_census_data.explore"
 include: "//data-block-acs-census-bigquery/geography/*"
 
 explore: polls {
@@ -43,14 +43,14 @@ explore: polls {
   }
 }
 
-explore: order_items {}
+# explore: order_items {}
 
-explore: polling {
-  join: forecast {
-    relationship: one_to_one
-    sql_on: ${polling.pk} = ${forecast.pk} ;;
-  }
-}
+# explore: polling {
+#   join: forecast {
+#     relationship: one_to_one
+#     sql_on: ${polling.pk} = ${forecast.pk} ;;
+#   }
+# }
 
 explore: ecmap {
   description: "This explore should be used when analyzing the US Electoral College in Looker. Various forecasting models, polling measures, and more are included."
@@ -83,38 +83,38 @@ explore: ecmap {
   }
 }
 
-explore: results {}
-explore: results_flat {
-  always_join: [state]
-  join: state {
-    relationship: many_to_many
-    sql_on: ${results_flat.state} = ${state.state_abbreviation} ;;
-  }
-  join: county {
-    relationship: many_to_many
-    sql_on: ${results_flat.pk} = CONCAT(${county.county_name}, ",", ${state.state_abbreviation}) ;;
-  }
-}
+# explore: results {}
+# explore: results_flat {
+#   always_join: [state]
+#   join: state {
+#     relationship: many_to_many
+#     sql_on: ${results_flat.state} = ${state.state_abbreviation} ;;
+#   }
+#   join: county {
+#     relationship: many_to_many
+#     sql_on: ${results_flat.pk} = CONCAT(${county.county_name}, ",", ${state.state_abbreviation}) ;;
+#   }
+# }
 
-explore: +congressional_district {
-  always_join: [niskanen]
-  join: general_polls {
-    relationship: one_to_many
-    sql_on: ${state.state_name} = ${general_polls.state} ;;
-  }
-  join: margins {
-    relationship: one_to_one
-    sql_on: ${general_polls.pk} = ${margins.pk} ;;
-  }
-  join: forecast_lookup {
-    relationship: one_to_one
-    sql_on: ${state.state_abbreviation} = ${forecast_lookup.abbreviation} ;;
-  }
-  join: niskanen {
-    relationship: one_to_one
-    sql_on: ${state.state_abbreviation} = ${niskanen.abbreviation} ;;
-  }
-}
+# explore: +congressional_district {
+#   always_join: [niskanen]
+#   join: general_polls {
+#     relationship: one_to_many
+#     sql_on: ${state.state_name} = ${general_polls.state} ;;
+#   }
+#   join: margins {
+#     relationship: one_to_one
+#     sql_on: ${general_polls.pk} = ${margins.pk} ;;
+#   }
+#   join: forecast_lookup {
+#     relationship: one_to_one
+#     sql_on: ${state.state_abbreviation} = ${forecast_lookup.abbreviation} ;;
+#   }
+#   join: niskanen {
+#     relationship: one_to_one
+#     sql_on: ${state.state_abbreviation} = ${niskanen.abbreviation} ;;
+#   }
+# }
 
 
 explore: +acs_census_data_core {
@@ -131,46 +131,46 @@ explore: +acs_census_data_core {
     sql_on: ${general_polls.pk} = ${margins.pk} ;;
   }
 }
-explore: +places {
-  hidden: yes
-}
-explore: +cbsa {
-  hidden: yes
-}
-explore: +zcta {
-  hidden: yes
-}
-explore: +school_districts_unified {
-  hidden: yes
-}
-explore: +school_districts_elementary {
-  hidden: yes
-}
-explore: +school_districts_secondary {
-  hidden: yes
-}
-explore: +puma {
-  hidden: yes
-}
+# explore: +places {
+#   hidden: yes
+# }
+# explore: +cbsa {
+#   hidden: yes
+# }
+# explore: +zcta {
+#   hidden: yes
+# }
+# explore: +school_districts_unified {
+#   hidden: yes
+# }
+# explore: +school_districts_elementary {
+#   hidden: yes
+# }
+# explore: +school_districts_secondary {
+#   hidden: yes
+# }
+# explore: +puma {
+#   hidden: yes
+# }
 
-explore: electoral_college_map {
-  join: niskanen {
-    type: left_outer
-    sql_on: ${electoral_college_map.abbreviation} = ${niskanen._2008} ;;
-  }
-  join: niskanen_other {
-    from: niskanen
-    type: inner
-    sql_on: ${electoral_college_map.state} = ${niskanen.negative_partisanship} ;;
-  }
-  join: niskanen_cross {
-    from: niskanen
-    type: cross
-    sql_on: ${electoral_college_map.votes} = ${niskanen.trump_prob} ;;
-  }
-  join: niskaknen_full {
-    from: niskanen
-    type: full_outer
-    sql_on: ${electoral_college_map.closing} = ${niskanen.biden_prob} ;;
-  }
-}
+# explore: electoral_college_map {
+#   join: niskanen {
+#     type: left_outer
+#     sql_on: ${electoral_college_map.abbreviation} = ${niskanen._2008} ;;
+#   }
+#   join: niskanen_other {
+#     from: niskanen
+#     type: inner
+#     sql_on: ${electoral_college_map.state} = ${niskanen.negative_partisanship} ;;
+#   }
+#   join: niskanen_cross {
+#     from: niskanen
+#     type: cross
+#     sql_on: ${electoral_college_map.votes} = ${niskanen.trump_prob} ;;
+#   }
+#   join: niskaknen_full {
+#     from: niskanen
+#     type: full_outer
+#     sql_on: ${electoral_college_map.closing} = ${niskanen.biden_prob} ;;
+#   }
+# }

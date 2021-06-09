@@ -1,12 +1,12 @@
 view: electoral_college_map {
   sql_table_name: `spencer-white-tckt87992.2020electionbetting.electoral_college_map`
     ;;
-
   dimension: state {
     primary_key: yes
     map_layer_name: us_states
     type: string
     sql: ${TABLE}.State ;;
+    tags: ["Test", "Please", "ignore", "🐈"]
   }
 
   dimension: votes {
